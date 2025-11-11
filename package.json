@@ -1,0 +1,26 @@
+{
+  "name": "tech-blog-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.mjs",
+    "dev": "nodemon index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DariaSK18/tech-blog-app.git"
+  },
+  "author": "Daria Steblovska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DariaSK18/tech-blog-app/issues"
+  },
+  "homepage": "https://github.com/DariaSK18/tech-blog-app#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "type": "module"
+}
