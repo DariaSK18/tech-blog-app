@@ -1,12 +1,13 @@
 import { Router } from "express";
 import * as blogController from "../controllers/blogController.mjs";
+import { isUser } from "../middleware/auth.mjs";
 
 const router = Router();
 
 router
   .route("/")
   .get(blogController.getAllBlogs)
-  .post(blogController.createBlog);
+  .post(isUser, blogController.createBlog);
 
 router
   .route("/:id")
