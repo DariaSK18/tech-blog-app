@@ -3,12 +3,15 @@ import routes from "./routes/index.mjs";
 import errorHandler from "./middleware/errorHandler.mjs";
 import AppError from "./utils/AppError.mjs";
 import { isUser } from "./middleware/auth.mjs";
+import pageRoutes from "./routes/pageRoutes.mjs";
 
 const app = express();
 
 app.use(express.json())
+
 app.use(isUser)
 
+app.use('/', pageRoutes)
 app.use('/api', routes)
 
 // app.all('/*', (req, res, next) => {

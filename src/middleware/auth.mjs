@@ -1,4 +1,4 @@
-import { catchAsync } from "../utils/catchAsync.mjs";
+// import { catchAsync } from "../utils/catchAsync.mjs";
 import AppError from "../utils/AppError.mjs";
 
 export const isAuth = (req, res, next) => {
