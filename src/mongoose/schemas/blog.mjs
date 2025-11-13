@@ -17,7 +17,7 @@ const BlogSchema = new mongoose.Schema(
       required: [true, "Author is required"],
     },
     tags: {
-        type: mongoose.Schema.Types.String,
+        type: [mongoose.Schema.Types.String],
         default: []
     }
   },
