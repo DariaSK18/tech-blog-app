@@ -3,6 +3,7 @@ import passport from "passport";
 import AppError from "../utils/AppError.mjs";
 import { Strategy as LocalStrategy } from "passport-local";
 import { compareHashedPassword } from "../helpers/helpers.mjs";
+import { User } from "../mongoose/schemas/user.mjs";
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -10,7 +11,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await findById(id);
+    const user = await User.findById(id);
     if (!user) return done(new AppError("User not found", 404), null);
     done(null, user);
   } catch (err) {
@@ -23,7 +24,7 @@ passport.use(
     { usernameField: "username", passwordField: "password" },
     async (username, password, done) => {
       try {
-        const user = users.find((u) => u.username === username);
+        const user = await User.findOne({username})
         if (!user) return done(null, false, { message: "User not found" });
         const isMatch = compareHashedPassword(password, user.password);
         if (!isMatch)
