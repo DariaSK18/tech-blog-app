@@ -8,7 +8,10 @@ const app = express();
 app.use(express.json())
 app.use('/api', routes)
 
-app.all('*', (req, res, next) => {
+// app.all('/*', (req, res, next) => {
+//     next(new AppError(`Can't find ${req.originalUrl} on this server`, 404))
+// })
+app.use((req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server`, 404))
 })
 

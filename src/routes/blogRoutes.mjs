@@ -1,4 +1,5 @@
 import { Router } from "express";
+import * as blogController from "../controllers/blogController.mjs";
 
 const router = Router();
 
