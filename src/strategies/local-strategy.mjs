@@ -1,8 +1,8 @@
 import passport from "passport";
-import { findById, users } from "../models/userModel.mjs";
+// import { findById, users } from "../models/userModel.mjs";
 import AppError from "../utils/AppError.mjs";
 import { Strategy as LocalStrategy } from "passport-local";
-import { compareHashedPassword } from "../utils/helpers.mjs";
+import { compareHashedPassword } from "../helpers/helpers.mjs";
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

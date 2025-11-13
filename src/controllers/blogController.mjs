@@ -11,7 +11,7 @@ export const getAllBlogs = catchAsync(async (req, res, next) => {
 export const createBlog = catchAsync(async (req, res, next) => {
   const {title, content, author, tags} = req.body;
   if (!title || !content || !author) return next(new AppError("Title, content and author required", 400));
-  const saved = await Blog.create({title, content, author, tags});
+  const saved = await Blog.create({title, content, author: User._id, tags});
   res.status(201).json(saved);
 });
 
