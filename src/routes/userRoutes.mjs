@@ -11,7 +11,15 @@ router
 router
   .route("/:id")
   .get(userController.getOneUser)
-  // .patch(userController.updateUser)
-  // .delete(userController.deleteUser);
+  .patch(userController.updateUser)
+  .delete(userController.deleteUser);
+
+router
+  .route("/auth")
+  .post(userController.loginUser)
+
+router
+  .route("/logout")
+  .post(userController.logoutUser)
 
 export default router;
