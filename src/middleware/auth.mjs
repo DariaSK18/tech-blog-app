@@ -7,3 +7,8 @@ export const isAuth = (req, res, next) => {
     return next(new AppError("Not authenticated", 401));
   return res.redirect("/login");
 };
+
+export const isUser = (req, res, next) => {
+    res.locals.user = req.user || null
+    next()
+}
