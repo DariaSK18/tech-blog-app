@@ -6,8 +6,10 @@ import { isUser } from "./middleware/auth.mjs";
 import pageRoutes from "./routes/pageRoutes.mjs";
 
 const app = express();
-
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 app.use(isUser)
 
