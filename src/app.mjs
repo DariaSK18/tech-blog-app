@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "./routes/index.mjs";
-import errorController from "./controllers/errorController.mjs";
+import errorHandler from "./middleware/errorHandler.mjs";
 import AppError from "./utils/AppError.mjs";
 
 const app = express();
@@ -15,6 +15,6 @@ app.use((req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server`, 404))
 })
 
-app.use(errorController)
+app.use(errorHandler)
 
 export default app
