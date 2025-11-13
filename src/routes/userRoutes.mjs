@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as userController from "../controllers/userController.mjs";
+import { isAuth } from "../middleware/auth.mjs";
 
 const router = Router();
 
@@ -11,8 +12,8 @@ router
 router
   .route("/:id")
   .get(userController.getOneUser)
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
+  .patch(isAuth, userController.updateUser)
+  .delete(isAuth, userController.deleteUser);
 
 router
   .route("/auth")
@@ -20,6 +21,6 @@ router
 
 router
   .route("/logout")
-  .post(userController.logoutUser)
+  .post(isAuth, userController.logoutUser)
 
 export default router;
