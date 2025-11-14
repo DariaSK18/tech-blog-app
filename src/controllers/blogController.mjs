@@ -3,11 +3,13 @@ import { Blog } from "../mongoose/schemas/blog.mjs";
 import AppError from "../utils/AppError.mjs";
 import { catchAsync } from "../utils/catchAsync.mjs";
 
+// --- get all blogs ---
 export const getAllBlogs = catchAsync(async (req, res, next) => {
   const blogs = await Blog.find().populate('author', 'username email');
   res.status(200).json(blogs);
 });
 
+// --- create a blog ---
 export const createBlog = catchAsync(async (req, res, next) => {
   const{user, body: {title, content, tags}} = req;
   if (!title || !content) return next(new AppError("Title and content required", 400));
@@ -15,6 +17,7 @@ export const createBlog = catchAsync(async (req, res, next) => {
   res.status(201).json(saved);
 });
 
+// --- get one blog by id ---
 export const getOneBlog = catchAsync(async (req, res, next) => {
   const {
     params: { id },
@@ -24,6 +27,7 @@ export const getOneBlog = catchAsync(async (req, res, next) => {
   res.status(200).json(blog);
 });
 
+// --- update a field ---
 export const updateBlog = catchAsync(async (req, res, next) => {
   const {
     params: { id },
@@ -36,6 +40,7 @@ export const updateBlog = catchAsync(async (req, res, next) => {
   res.status(200).json(updated);
 });
 
+// --- delete blog by id ---
 export const deleteBlog = catchAsync(async (req, res, next) => {
   const {
     params: { id },
