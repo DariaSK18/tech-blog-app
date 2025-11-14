@@ -17,3 +17,20 @@ function showMessage(text, type, duration = 3000) {
     msg.classList.remove("show");
   }, duration);
 }
+
+
+// --- registration ---
+
+// --- login ---
+
+// --- logout ---
+
+// --- blog create / update ---
+
+// --- delete / edit blog ---
+
+// --- change psw ---
+
+// --- delete user ---
+
+// --- eye for psw ---
