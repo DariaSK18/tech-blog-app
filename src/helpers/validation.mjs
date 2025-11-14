@@ -40,3 +40,51 @@ export const signupValidation = {
     stripLow: true,
   },
 };
+
+export const blogValidation = {
+  title: {
+    bail: true,
+    exists: { errorMessage: "Title is required" },
+    isString: { errorMessage: "Must be a string" },
+    notEmpty: { errorMessage: "Must be not empty" },
+    isLength: {
+      options: {
+        min: 3,
+        max: 100,
+      },
+      errorMessage: "Must be at least 3-100 characters",
+    },
+    trim: true,
+  },
+  content: {
+    bail: true,
+    exists: { errorMessage: "Content is required" },
+    isString: { errorMessage: "Must be a string" },
+    notEmpty: { errorMessage: "Must be not empty" },
+    trim: true,
+  },
+  author: {
+    bail: true,
+    exists: { errorMessage: "Author is required" },
+    notEmpty: { errorMessage: "Must be not empty" },
+    isMongoId: { errorMessage: "Invalid author ID" },
+  },
+  tags: {
+    bail: true,
+    optional: true,
+    isArray: {errorMessage: 'Tags must be an array'}
+  },
+  "tags.*": {
+    bail: true,
+    optional: true,
+    isString: { errorMessage: "Must be a string" },
+    isLength: {
+      options: {
+        min: 1,
+        max: 20,
+      },
+      errorMessage: "Each tag must be 1-20 characters",
+    },
+    trim: true,
+  },
+};
