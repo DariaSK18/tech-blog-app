@@ -72,7 +72,7 @@ export const blogValidation = {
   tags: {
     bail: true,
     optional: true,
-    isArray: {errorMessage: 'Tags must be an array'}
+    isArray: { errorMessage: "Tags must be an array" },
   },
   "tags.*": {
     bail: true,
@@ -86,5 +86,48 @@ export const blogValidation = {
       errorMessage: "Each tag must be 1-20 characters",
     },
     trim: true,
+  },
+};
+
+export const userPatch = {
+  username: {
+    optional: true,
+    bail: true,
+    isString: { errorMessage: "Must be a string" },
+    notEmpty: { errorMessage: "Must be not empty" },
+    isLength: {
+      options: {
+        min: 3,
+        max: 20,
+      },
+      errorMessage: "Must be at least 3-20 characters",
+    },
+    stripLow: true,
+    trim: true,
+  },
+  email: {
+    optional: true,
+    bail: true,
+    isEmail: { errorMessage: "Invalid email" },
+    isString: { errorMessage: "Must be a string" },
+    notEmpty: { errorMessage: "Must be not empty" },
+    normalizeEmail: true,
+    trim: true,
+  },
+  password: {
+    optional: true,
+    bail: true,
+    isString: { errorMessage: "Must be a string" },
+    notEmpty: { errorMessage: "Must be not empty" },
+    isLength: {
+      options: { min: 6 },
+      errorMessage: "Must be at least 6 characters",
+    },
+    matches: {
+      options: /^(?=.*[A-Za-z])(?=.*\d).+$/,
+      errorMessage: "Password must contain at least one letter and one number",
+    },
+    trim: true,
+    stripLow: true,
   },
 };
