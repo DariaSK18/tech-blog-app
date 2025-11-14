@@ -5,15 +5,19 @@ import { catchAsync } from "../utils/catchAsync.mjs";
 
 // --- get all blogs ---
 export const getAllBlogs = catchAsync(async (req, res, next) => {
-  const blogs = await Blog.find().populate('author', 'username email');
+  const blogs = await Blog.find().populate("author", "username email");
   res.status(200).json(blogs);
 });
 
 // --- create a blog ---
 export const createBlog = catchAsync(async (req, res, next) => {
-  const{user, body: {title, content, tags}} = req;
-  if (!title || !content) return next(new AppError("Title and content required", 400));
-  const saved = await Blog.create({title, content, author: user._id, tags});
+  const {
+    user,
+    body: { title, content, tags },
+  } = req;
+  if (!title || !content)
+    return next(new AppError("Title and content required", 400));
+  const saved = await Blog.create({ title, content, author: user._id, tags });
   res.status(201).json(saved);
 });
 
@@ -22,7 +26,7 @@ export const getOneBlog = catchAsync(async (req, res, next) => {
   const {
     params: { id },
   } = req;
-  const blog = await Blog.findById(id).populate('author', 'username email');
+  const blog = await Blog.findById(id).populate("author", "username email");
   if (!blog) return next(new AppError("Blog not found", 404));
   res.status(200).json(blog);
 });
@@ -31,12 +35,15 @@ export const getOneBlog = catchAsync(async (req, res, next) => {
 export const updateBlog = catchAsync(async (req, res, next) => {
   const {
     params: { id },
-    body,
+    body: { title, content, tags },
   } = req;
-  const updated = await Blog.findByIdAndUpdate(id, body, {
-    new: true
-  });
-  if (!updated) return next(new AppError("Blog not found", 404));
+  const blog = await Blog.findById(id);
+  if (!blog) return next(new AppError("Blog not found", 404));
+  if (title) blog.title = title;
+  if (content) blog.content = content;
+  if (tags) blog.tags = tags;
+
+  const updated = await blog.save()
   res.status(200).json(updated);
 });
 
