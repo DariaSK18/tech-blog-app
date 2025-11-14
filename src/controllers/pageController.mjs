@@ -7,3 +7,6 @@ export const loginPage = (req, res) => {
 export const registerPage = (req, res) => {
     res.render('register', {title: 'Register'})
 }
+export const profilePage = (req, res) => {
+    res.render('profile', {title: 'Profile'})
+}

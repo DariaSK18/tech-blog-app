@@ -5,7 +5,8 @@ import * as pageController from "../controllers/pageController.mjs";
 const router = Router()
 
 router.get('/', isUser, pageController.homePage)
-router.get('/login', isUser, pageController.loginPage)
-router.get('/register', isUser, pageController.registerPage)
+router.get('/login', pageController.loginPage)
+router.get('/register', pageController.registerPage)
+router.get('/profile', isAuth, isUser, pageController.profilePage)
 
 export default router
