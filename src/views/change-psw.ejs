@@ -1,0 +1,41 @@
+<%- include('components/head') -%>
+<body>
+  <div class="wrapper">
+    <%- include('components/header') -%>
+    <div class="main">
+      <div class="main__container">
+        <form id="changePswForm" action="/api/users/me" method="PATCH">
+          <label>
+            Current password:
+            <input
+              type="password"
+              name="currentPsw"
+              placeholder="Current Password"
+              
+            />
+          </label>
+          <label>
+            New password:
+            <input
+              type="password"
+              name="newPsw"
+              placeholder="New password"
+              
+            />
+          </label>
+          <label>
+            Confirm password:
+            <input
+              type="password"
+              name="confirmPsw"
+              placeholder="Confirm password"
+              
+            />
+          </label>
+          <button type="submit" class="btn">Save</button>
+          <a href="/" class="btn">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
