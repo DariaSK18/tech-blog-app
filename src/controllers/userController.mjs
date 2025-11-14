@@ -14,10 +14,11 @@ export const getAllUsers = catchAsync(async (req, res, next) => {
 
 // --- register user ---
 export const createUser = catchAsync(async (req, res, next) => {
-  const {username, email, password} = req.body;
-  if (!username || !email || !password) return next(new AppError("All fields required", 400));
-  const hashed = hashPassword(password)
-  const saved = await User.create({username, email, password: hashed});
+  const { username, email, password } = req.body;
+  if (!username || !email || !password)
+    return next(new AppError("All fields required", 400));
+  const hashed = hashPassword(password);
+  const saved = await User.create({ username, email, password: hashed });
   res.status(201).json(saved);
 });
 
@@ -35,18 +36,21 @@ export const getOneUser = catchAsync(async (req, res, next) => {
 export const updateUser = catchAsync(async (req, res, next) => {
   const {
     params: { id },
-    body: {username, password, currentPsw}
+    body: { username, password, currentPsw },
   } = req;
 
-  const user = await User.findById(id)
-  if(!user) return next(new AppError('User not found', 404))
-  const isMatch = compareHashedPassword(currentPsw, user.password)
-if(!isMatch) return next(new AppError("Current password incorrect", 400))
-  if(username) user.username = username
-if(password) user.password = hashPassword(password)
+  const user = await User.findById(id);
+  if (!user) return next(new AppError("User not found", 404));
+  if (currentPsw) {
+    const isMatch = compareHashedPassword(currentPsw, user.password);
+    if (!isMatch) return next(new AppError("Current password incorrect", 400));
+  }
+
+  if (username) user.username = username;
+  if (password) user.password = hashPassword(password);
 
   // const updated = await User.findByIdAndUpdate(id, user, {new: true});
-  const updated = await user.save()
+  const updated = await user.save();
   if (!updated) return next(new AppError("User not found", 404));
   res.status(200).json(updated);
 });
@@ -56,32 +60,36 @@ export const deleteUser = catchAsync(async (req, res, next) => {
   const {
     user: { id },
   } = req;
-  await Blog.deleteMany({author: id})
+  await Blog.deleteMany({ author: id });
   const deleted = await User.findByIdAndDelete(id);
   if (!deleted) return next(new AppError("User not found", 404));
   req.logout((err) => {
-    if(err) return next(new AppError('Logout failed', 400))
-    res.json({msg: 'Account deleted and logged out'})
-  })
+    if (err) return next(new AppError("Logout failed", 400));
+    res.json({ msg: "Account deleted and logged out" });
+  });
 });
 
 // --- login user ---
 export const loginUser = (req, res, next) => {
-  passport.authenticate('local', (err, user) => {
-    if(err) return next(err)
-    if(!user) return res.status(401).json({msg: 'Invalid credentials'})
+  const { username, password } = req.validatedData;
+  passport.authenticate("local", (err, user) => {
+    if (err) return next(err);
+    if (!user) return res.status(401).json({ msg: "Invalid credentials" });
 
     req.logIn(user, (err) => {
-      if(err) return next(err)
-      return res.json({msg: 'Successfully logged in', user: {id: user._id, username: user.username, email: user.email}})
-    })
-  })(req, res, next)
-}
+      if (err) return next(err);
+      return res.json({
+        msg: "Successfully logged in",
+        user: { id: user._id, username: user.username, email: user.email },
+      });
+    });
+  })(req, res, next);
+};
 
-// --- logout user --- 
+// --- logout user ---
 export const logoutUser = catchAsync(async (req, res, next) => {
   req.logout((err) => {
-    if(err) return next(new AppError("Logout failed", 400))
-    res.status(200).json({msg: 'Successfully logged out'})
-  })
-})
+    if (err) return next(new AppError("Logout failed", 400));
+    res.status(200).json({ msg: "Successfully logged out" });
+  });
+});

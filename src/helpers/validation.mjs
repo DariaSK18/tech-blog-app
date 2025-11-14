@@ -63,12 +63,12 @@ export const blogValidation = {
     notEmpty: { errorMessage: "Must be not empty" },
     trim: true,
   },
-  author: {
-    bail: true,
-    exists: { errorMessage: "Author is required" },
-    notEmpty: { errorMessage: "Must be not empty" },
-    isMongoId: { errorMessage: "Invalid author ID" },
-  },
+  // author: {
+  //   bail: true,
+  //   exists: { errorMessage: "Author is required" },
+  //   notEmpty: { errorMessage: "Must be not empty" },
+  //   isMongoId: { errorMessage: "Invalid author ID" },
+  // },
   tags: {
     bail: true,
     optional: true,
@@ -154,12 +154,12 @@ export const blogPatch = {
     notEmpty: { errorMessage: "Must be not empty" },
     trim: true,
   },
-  author: {
-    bail: true,
-    exists: { errorMessage: "Author is required" },
-    notEmpty: { errorMessage: "Must be not empty" },
-    isMongoId: { errorMessage: "Invalid author ID" },
-  },
+  // author: {
+  //   bail: true,
+  //   exists: { errorMessage: "Author is required" },
+  //   notEmpty: { errorMessage: "Must be not empty" },
+  //   isMongoId: { errorMessage: "Invalid author ID" },
+  // },
   tags: {
     bail: true,
     optional: true,
