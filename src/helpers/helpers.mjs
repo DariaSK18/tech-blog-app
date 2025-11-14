@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import passport from "passport";
 
 const saltRound = 10;
 
