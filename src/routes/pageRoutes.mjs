@@ -8,5 +8,8 @@ router.get('/', isUser, pageController.homePage)
 router.get('/login', pageController.loginPage)
 router.get('/register', pageController.registerPage)
 router.get('/profile', isAuth, isUser, pageController.profilePage)
+router.get('/blogs', pageController.blogsPage)
+router.get('/change-psw', pageController.changePswPage)
+router.get('/write-blog', pageController.writeBlogPage)
 
 export default router
