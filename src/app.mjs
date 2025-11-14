@@ -22,6 +22,7 @@ mongoose
   .then(() => console.log("Connected to Database"))
   .catch((err) => console.log(`Error: ${err}`));
 
+app.set('views', './src/views')
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.json());
