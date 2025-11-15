@@ -1,4 +1,4 @@
-.header {
+.header__container {
     display: flex;
     gap: 1rem;
     justify-content: space-between;
