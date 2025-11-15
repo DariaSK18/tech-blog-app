@@ -17,7 +17,8 @@
                 <% blog.tags.forEach(tag => { %>
                 <a href="#" class="main__tags">#<%= tag %> </a>
                 <% }) %>
-                <!-- <p><%= blog.createdAt %></p> -->
+                <p><%= blog.createdAt %></p>
+                <p><%= blog.updatedAt %></p>
                 <% if (user && blog.author?._id && String(blog.author._id) ===
                 String(user._id)) { %>
                 <div class="main_btns">
