@@ -1,3 +1,4 @@
+import { showMessage } from "../utils/showMessage.mjs";
 const blogsList = document.querySelector(".blogs-list");
 
 // --- delete ---

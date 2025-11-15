@@ -1,13 +1,14 @@
-
-const blogForm = document.getElementById("blogForm");
+import { showMessage } from "../utils/showMessage.mjs";
+const blogForm = document.getElementById("blogForm")
 
 // --- blog create / update ---
 if (blogForm) {
-  const blogId = blogForm.dataset.id;
-  console.log(blogId);
+  // console.log(blogId);
 
   blogForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const blogId = blogForm.dataset.id;
 
     const title = blogForm.title.value.trim();
     const content = blogForm.content.value.trim();
@@ -21,10 +22,12 @@ if (blogForm) {
       return;
     }
 
+
     const url = blogId ? `/api/blog/${blogId}` : "/api/blog";
     const method = blogId ? "PATCH" : "POST";
 
-    const res = await fetch(url, {
+    try{
+      const res = await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, content, tags }),
@@ -35,7 +38,11 @@ if (blogForm) {
       setTimeout(() => {
         window.location.href = "/blogs";
       }, 300);
-    } else {
+    } 
+    }
+    catch(error) {
+      console.log(error);
+      
       showMessage("Failed", "error");
     }
   });
