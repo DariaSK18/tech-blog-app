@@ -12,18 +12,7 @@ const changePswForm = document.getElementById("changePswForm");
 
 const passwordFields = document.querySelectorAll('input[type="password"]');
 
-// --- show message ---
-function showMessage(text, type, duration = 3000) {
-  const msg = document.getElementById("message");
-  if (!msg) return;
 
-  msg.innerText = text;
-  msg.className = `message show ${type}`;
-
-  setTimeout(() => {
-    msg.classList.remove("show");
-  }, duration);
-}
 
 // --- registration ---
 if (registerForm) {
