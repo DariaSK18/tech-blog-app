@@ -91,7 +91,9 @@ logoutBtns.forEach((btn) => {
 
 // --- blog create / update ---
 if (blogForm) {
-  const blogId = blogForm.dataset.blogId;
+  const blogId = blogForm.dataset.id;
+  console.log(blogId);
+  
   blogForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -127,7 +129,7 @@ if (blogForm) {
   });
 }
 
-// --- delete / edit blog ---
+// --- delete ---
 if (blogsList) {
   blogsList.addEventListener("click", async (e) => {
     const item = e.target.closest("li");
@@ -151,6 +153,8 @@ if (blogsList) {
     }
 
     if (e.target.classList.contains("editBlog")) {
+      // const li = clicked.closest("li");
+      // const id = li.getAttribute("id");
       window.location.href = `/write-blog/${id}`;
     }
   });
