@@ -1,3 +1,5 @@
+import { Blog } from "../mongoose/schemas/blog.mjs";
+
 export const homePage = (req, res) => {
   res.render("index", { title: "Home" });
 };
@@ -11,12 +13,14 @@ export const profilePage = (req, res) => {
   res.render("profile", { title: "Profile" });
 };
 
-export const blogsPage = (req, res) => {
-  res.render("blogs", { title: "Blogs" });
+export const blogsPage = async (req, res) => {
+  const blogs = await Blog.find().populate("author");
+  res.render("blogs", { title: "Blogs", blogs, user: req.user });
 };
 export const changePswPage = (req, res) => {
   res.render("change-psw", { title: "Edit" });
 };
 export const writeBlogPage = (req, res) => {
-  res.render("write-blog", { title: "Write blog" });
+  const {params: {id}} = req
+  res.render("write-blog", { title: "Write blog", id });
 };
