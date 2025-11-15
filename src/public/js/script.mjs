@@ -5,10 +5,12 @@ const blogForm = document.getElementById("blogForm");
 const logoutBtns = document.querySelectorAll(".logout");
 const blogsList = document.querySelector(".blogs-list");
 
-const searchForm = document.getElementById('searchForm')
+const searchForm = document.getElementById("searchForm");
 
 const deleteBtn = document.getElementById("delete");
 const changePswForm = document.getElementById("changePswForm");
+
+const passwordFields = document.querySelectorAll('input[type="password"]');
 
 // --- show message ---
 function showMessage(text, type, duration = 3000) {
@@ -95,7 +97,7 @@ logoutBtns.forEach((btn) => {
 if (blogForm) {
   const blogId = blogForm.dataset.id;
   console.log(blogId);
-  
+
   blogForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -232,15 +234,37 @@ if (deleteBtn) {
   });
 }
 
-if(searchForm) {
-  searchForm.addEventListener('submit', async (e) => {
-    e.preventDefault()
+// --- search by title ---
+if (searchForm) {
+  searchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const query = searchForm.query.value.trim()
-    if(!query) return
+    const query = searchForm.query.value.trim();
+    if (!query) return;
 
-    window.location.href = `/blogs?search=${encodeURIComponent(query)}`
-  })
+    window.location.href = `/blogs?search=${encodeURIComponent(query)}`;
+  });
 }
 
 // --- eye for psw ---
+
+if (passwordFields) {
+  passwordFields.forEach((input) => {
+    const toggleBtn = document.createElement("button");
+    toggleBtn.type = "button";
+    toggleBtn.innerText = "show";
+    toggleBtn.classList.add("toggle-password");
+
+    input.insertAdjacentElement("afterend", toggleBtn);
+
+    toggleBtn.addEventListener("click", () => {
+      if (input.type === "password") {
+        input.type = "text";
+        toggleBtn.innerText = "hide";
+      } else {
+        input.type = "password";
+        toggleBtn.innerText = "show";
+      }
+    });
+  });
+}
