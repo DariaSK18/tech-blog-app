@@ -7,8 +7,6 @@ const blogsList = document.querySelector(".blogs-list");
 
 const searchForm = document.getElementById("searchForm");
 
-const deleteBtn = document.getElementById("delete");
-const changePswForm = document.getElementById("changePswForm");
 
 const passwordFields = document.querySelectorAll('input[type="password"]');
 
@@ -80,76 +78,6 @@ if (blogsList) {
       // const li = clicked.closest("li");
       // const id = li.getAttribute("id");
       window.location.href = `/write-blog/${id}`;
-    }
-  });
-}
-
-// --- change psw ---
-if (changePswForm) {
-  changePswForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const currentPsw = changePswForm.currentPsw.value.trim();
-    const newPsw = changePswForm.newPsw.value.trim();
-    const confirmPsw = changePswForm.confirmPsw.value.trim();
-
-    if (!currentPsw || !newPsw || !confirmPsw) {
-      showMessage("All fields are required!", "error");
-      return;
-    }
-
-    if (newPsw !== confirmPsw) {
-      showMessage("Passwords don't match!", "error");
-      return;
-    }
-
-    const formData = { currentPsw, password: newPsw };
-
-    try {
-      const res = await fetch("/api/user/me", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        showMessage("Password changed successfully!", "success");
-
-        changePswForm.reset();
-        setTimeout(() => {
-          window.location.href = "/blogs";
-        }, 300);
-      } else {
-        const error = await res.json();
-        showMessage(error.msg || "Failed to change password!", "error");
-      }
-    } catch (error) {
-      console.log(error);
-      showMessage("Error updating password", "error");
-    }
-  });
-}
-
-// --- delete user ---
-if (deleteBtn) {
-  deleteBtn.addEventListener("click", async () => {
-    const confirmation = confirm("Delete profile?");
-    if (!confirmation) return;
-
-    try {
-      const res = await fetch("/api/user/me", {
-        method: "DELETE",
-        credentials: "same-origin",
-      });
-
-      if (res.ok) {
-        showMessage("Profile deleted successfully!", "success");
-        setTimeout(() => {
-          window.location.href = "/register";
-        }, 300);
-      } else showMessage("Failed to delete profile!", "error");
-    } catch (error) {
-      console.log(error);
     }
   });
 }
