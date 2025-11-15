@@ -13,11 +13,11 @@
 html, body {
     font-family: "Nunito", "Roboto";
     font-size: 1rem;
-    /* background: #2b2b2b; */
+    background: #2b2b2b;
     /* background: #2a7b9b; */
     /* background: linear-gradient(35deg, rgba(42, 123, 155, 1) 18%, rgba(35, 135, 77, 1) 56%, rgba(6, 120, 4, 1) 100%); */
      /* background: linear-gradient(35deg, rgb(31, 106, 135) 18%, rgb(27, 126, 68) 56%, rgb(4, 87, 2) 100%);  */
- background: linear-gradient(35deg, rgb(22, 89, 116) 18%, rgb(24, 117, 63) 56%, rgb(6, 75, 5) 100%);
+ /* background: linear-gradient(35deg, rgb(22, 89, 116) 18%, rgb(24, 117, 63) 56%, rgb(6, 75, 5) 100%); */
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
