@@ -14,7 +14,11 @@ export const profilePage = (req, res) => {
 };
 
 export const blogsPage = async (req, res) => {
-  const blogs = await Blog.find().populate("author");
+  const searchQuery = req.query.search || ''
+
+  const filter = searchQuery ? {title: {$regex: searchQuery, $options: 'i'}
+  } : {}
+  const blogs = await Blog.find(filter).populate("author");
   res.render("blogs", { title: "Blogs", blogs, user: req.user });
 };
 export const changePswPage = (req, res) => {

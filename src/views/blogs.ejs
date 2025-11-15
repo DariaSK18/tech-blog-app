@@ -12,7 +12,7 @@
                 <h4><%= blog.title %></h4>
                 <p class="main__content"><%= blog.content %></p>
                 <% blog.tags.forEach(tag => { %>
-                <a class="main__tags">#<%= tag %> </a>
+                <a href="#" class="main__tags">#<%= tag %> </a>
                 <% }) %>
                 <!-- <p><%= blog.createdAt %></p> -->
                 <% if (String(blog.author._id) === String(user._id)) { %>

@@ -5,6 +5,8 @@ const blogForm = document.getElementById("blogForm");
 const logoutBtns = document.querySelectorAll(".logout");
 const blogsList = document.querySelector(".blogs-list");
 
+const searchForm = document.getElementById('searchForm')
+
 const deleteBtn = document.getElementById("delete");
 const changePswForm = document.getElementById("changePswForm");
 
@@ -228,6 +230,17 @@ if (deleteBtn) {
       console.log(error);
     }
   });
+}
+
+if(searchForm) {
+  searchForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const query = searchForm.query.value.trim()
+    if(!query) return
+
+    window.location.href = `/blogs?search=${encodeURIComponent(query)}`
+  })
 }
 
 // --- eye for psw ---

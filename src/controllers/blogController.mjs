@@ -56,3 +56,12 @@ export const deleteBlog = catchAsync(async (req, res, next) => {
   if (!deleted) return next(new AppError("Blog not found", 404));
   res.status(204).send();
 });
+
+
+// export const blogsPage = async (req, res) => {
+//   const searchQuery = req.query.search || ''
+
+//   const blogs = await Blog.find({
+//     title: {$regex: searchQuery, $options: 'i'}
+//   }).populate('author')
+// }
