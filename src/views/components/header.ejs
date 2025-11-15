@@ -23,7 +23,11 @@
       <a href="../write-blog">Write</a>
     </section>
     <section class="header__profile profile">
-      <a href="../profile" class="profile__photo"></a>
+      <% if (user) { %>
+      <a href="../profile" class="profile__photo"><%= user.username[0] %></a>
+      <% } else { %>
+        <a href="../login">LogIn</a> / <a href="../register">SignUp</a>
+        <% } %>
     </section>
   </div>
 </header>
