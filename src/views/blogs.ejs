@@ -7,6 +7,9 @@
         <div class="main__cards-block">
           <div class="main__cards">
             <ul class="blogs-list">
+              <% if (blogs.length === 0) { %>
+                <p>No Blogs found!</p>
+                <% } %>
               <% blogs.forEach(blog => { %>
               <li id="<%= blog._id %>">
                 <h4><%= blog.title %></h4>
