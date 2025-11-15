@@ -1,4 +1,5 @@
 import { Blog } from "../mongoose/schemas/blog.mjs";
+import dayjs from "dayjs";
 
 export const homePage = (req, res) => {
   res.render("index", { title: "Home" });
@@ -14,13 +15,26 @@ export const profilePage = (req, res) => {
 };
 
 export const blogsPage = async (req, res) => {
-  const searchQuery = req.query.search || "";
+  const { search, tag } = req.query;
 
-  const filter = searchQuery
-    ? { title: { $regex: `\\b${searchQuery}`, $options: "i" } }
-    : {};
+  const filter = {};
+
+  if (search) filter.title = { $regex: `\\b${search}`, $options: "i" };
+  if (tag) filter.tags = tag;
+
   const blogs = await Blog.find(filter).populate("author");
-  res.render("blogs", { title: "Blogs", blogs, user: req.user });
+
+  const formattedBlogs = blogs.map((blog) => ({
+    ...blog._doc,
+    formattedCreatedDate: dayjs(blog.createdAt).format("DD MMM YYYY"),
+    formattedUpdatedDate: dayjs(blog.updatedAt).format("DD MMM YYYY"),
+  }));
+
+  res.render("blogs", {
+    title: "Blogs",
+    blogs: formattedBlogs,
+    user: req.user,
+  });
 };
 export const changePswPage = (req, res) => {
   res.render("change-psw", { title: "Edit" });
