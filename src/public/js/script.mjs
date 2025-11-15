@@ -129,81 +129,77 @@ if (blogForm) {
 
 // --- delete / edit blog ---
 if (blogsList) {
-  [
-    blogsList.addEventListener("click", async (e) => {
-      const item = e.target.closest("li");
-      if (!item) return;
+  blogsList.addEventListener("click", async (e) => {
+    const item = e.target.closest("li");
+    if (!item) return;
 
-      const id = item.getAttribute("id");
+    const id = item.getAttribute("id");
 
-      if (e.target.classList.contains("deleteBlog")) {
-        const ok = confirm("Delete blog?");
-        if (!ok) return;
-      }
+    if (e.target.classList.contains("deleteBlog")) {
+      const ok = confirm("Delete blog?");
+      if (!ok) return;
+
       const res = await fetch(`/api/blog/${id}`, {
         method: "DELETE",
       });
-
       if (res.ok) {
         showMessage("Deleted", "success");
         setTimeout(() => {
           location.reload();
         }, 300);
       }
+    }
 
-      if (e.target.classList.contains("editBlog")) {
-        window.location.href = `/write-blog/${id}`;
-      }
-    }),
-  ];
+    if (e.target.classList.contains("editBlog")) {
+      window.location.href = `/write-blog/${id}`;
+    }
+  });
 }
 
 // --- change psw ---
-if(changePswForm) {
+if (changePswForm) {
   changePswForm.addEventListener("submit", async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const currentPsw = changePswForm.currentPsw.value.trim()
-    const newPsw = changePswForm.newPsw.value.trim()
-    const confirmPsw = changePswForm.confirmPsw.value.trim()
+    const currentPsw = changePswForm.currentPsw.value.trim();
+    const newPsw = changePswForm.newPsw.value.trim();
+    const confirmPsw = changePswForm.confirmPsw.value.trim();
 
-    if(!currentPsw || !newPsw || !confirmPsw) {
-      showMessage('All fields are required!', 'error')
-      return
+    if (!currentPsw || !newPsw || !confirmPsw) {
+      showMessage("All fields are required!", "error");
+      return;
     }
 
-    if(newPsw !== confirmPsw) {
-      showMessage('Passwords don\'t match!', 'error')
-      return
+    if (newPsw !== confirmPsw) {
+      showMessage("Passwords don't match!", "error");
+      return;
     }
 
-    const formData = {currentPsw, password: newPsw}
+    const formData = { currentPsw, password: newPsw };
 
     try {
-      const res = await fetch('/api/user/me', {
+      const res = await fetch("/api/user/me", {
         method: "PATCH",
-        headers: {"Content-Type": 'application/json'},
-        body: JSON.stringify(formData)
-      })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-      if(res.ok) {
-        showMessage('Password changed successfully!', 'success')
+      if (res.ok) {
+        showMessage("Password changed successfully!", "success");
 
-        changePswForm.reset()
-        setTimeout(()=>{
-          window.location.href = '/blogs'
-        },300)
-      }else {
-        const error = await res.json()
-        showMessage(error.msg || "Failed to change password!", 'error')
+        changePswForm.reset();
+        setTimeout(() => {
+          window.location.href = "/blogs";
+        }, 300);
+      } else {
+        const error = await res.json();
+        showMessage(error.msg || "Failed to change password!", "error");
       }
-      
     } catch (error) {
-      console.log(error)
-      showMessage('Error updating password', 'error')      
+      console.log(error);
+      showMessage("Error updating password", "error");
     }
-
-  })
+  });
 }
 
 // --- delete user ---

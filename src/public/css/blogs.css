@@ -33,6 +33,7 @@
         width: 100%;
         p{
             min-height: 2rem;
+            padding: 1rem;
         }
     }
     h4{

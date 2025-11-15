@@ -11,12 +11,14 @@
               <li id="<%= blog._id %>">
                 <h4><%= blog.title %></h4>
                 <p class="main__content"><%= blog.content %></p>
-                 <p class="main__tags"><%= blog.tags %></p>
-                <p><%= blog.createdAt %></p>
+                <% blog.tags.forEach(tag => { %>
+                <a class="main__tags">#<%= tag %> </a>
+                <% }) %>
+                <!-- <p><%= blog.createdAt %></p> -->
                 <% if (String(blog.author._id) === String(user._id)) { %>
                 <div class="main_btns">
                   <button class="editBlog card-btn">Edit</button>
-                  <button class="deletBlog card-btn">Delete</button>
+                  <button class="deleteBlog card-btn">Delete</button>
                 </div>
                 <% } %>
               </li>
