@@ -72,7 +72,7 @@ if (loginForm) {
       body: JSON.stringify({ username, password }),
     });
     if (res.ok) {
-      window.location.href = "/api/blog";
+      window.location.href = "/blogs";
     } else showMessage("Invalid username or password", "error");
   });
 }

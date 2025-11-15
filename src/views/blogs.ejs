@@ -5,28 +5,23 @@
     <div class="main">
       <div class="main__container">
         <div class="main__cards-block">
-          <!-- <h2>Welcome, <%= user.userName %>!</h2> -->
-          <!-- display list -->
           <div class="main__cards">
-            <!-- <% if (notes.length === 0) { %>
-            <p>No notes yet. <a href="/create-note">Create your first one!</a></p>
-            <% } else { %> -->
             <ul class="notes-list">
               <% blogs.forEach(blog => { %>
               <li id="<%= blog._id %>">
                 <h4><%= blog.title %></h4>
                 <p class="main__content"><%= blog.content %></p>
-                <!-- <p><%= note.createdAt %></p> -->
-                <% if (user) { %>
+                 <p class="main__content"><%= blog.tags %></p>
+                <p><%= blog.createdAt %></p>
+                <% if (String(blog.author._id) === String(user._id)) { %>
                 <div class="main_btns">
                   <button class="editNote card-btn">Edit</button>
                   <button class="deleteNote card-btn">Delete</button>
                 </div>
-                <% }
+                <% } %>
               </li>
               <% }) %>
             </ul>
-            <!-- <% } %> -->
           </div>
         </div>
       </div>
