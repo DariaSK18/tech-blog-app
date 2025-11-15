@@ -14,10 +14,11 @@ export const profilePage = (req, res) => {
 };
 
 export const blogsPage = async (req, res) => {
-  const searchQuery = req.query.search || ''
+  const searchQuery = req.query.search || "";
 
-  const filter = searchQuery ? {title: {$regex: searchQuery, $options: 'i'}
-  } : {}
+  const filter = searchQuery
+    ? { title: { $regex: `\\b${searchQuery}`, $options: "i" } }
+    : {};
   const blogs = await Blog.find(filter).populate("author");
   res.render("blogs", { title: "Blogs", blogs, user: req.user });
 };
@@ -37,7 +38,6 @@ export const writeBlogPage = async (req, res) => {
   let blog = null;
   if (id) blog = await Blog.findById(id);
   // console.log(id);
-  
 
   res.render("write-blog", {
     title: id ? "Edit blog" : "Write blog",
