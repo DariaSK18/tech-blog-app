@@ -6,15 +6,10 @@
       <div class="main__container">
         <div class="main__profile-content">
           <h2><%= user.username %>'s profile</h2>
-          <!-- <% if (notes.length === 0) { %> -->
-          <!-- <p>No notes yet. <a href="/create-note">Create your first one!</a></p> -->
-          <!-- <% } else { %> -->
           <div class="main__profile-list">
             <p>Username: <%= user.username %></p>
-            <p>Email: <%= user.username %></p>
-            <!-- <p>You have: <%= notes.length %> notes.</p> -->
+            <p>Email: <%= user.email %></p>
           </div>
-          <!-- <% } %> -->
           <div class="main__profiles-btns">
             <button>
               <a href="/change-psw" class="profileBtn btn">Change password</a>

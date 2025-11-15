@@ -10,7 +10,7 @@ export const registerPage = (req, res) => {
   res.render("register", { title: "Register" });
 };
 export const profilePage = (req, res) => {
-  res.render("profile", { title: "Profile" });
+  res.render("profile", { title: "Profile", user: req.user });
 };
 
 export const blogsPage = async (req, res) => {
