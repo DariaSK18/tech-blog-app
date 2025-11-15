@@ -5,6 +5,9 @@ const blogForm = document.getElementById("blogForm");
 const logoutBtns = document.querySelectorAll(".logout");
 const blogsList = document.querySelector(".blogs-list");
 
+const deleteBtn = document.getElementById("delete");
+const changePswForm = document.getElementById("changePswForm");
+
 // --- show message ---
 function showMessage(text, type, duration = 3000) {
   const msg = document.getElementById("message");
@@ -125,36 +128,60 @@ if (blogForm) {
 }
 
 // --- delete / edit blog ---
-if(blogsList) {[
-  blogsList.addEventListener("click", async (e) => {
-    const item = e.target.closest('li')
-    if(!item) return
+if (blogsList) {
+  [
+    blogsList.addEventListener("click", async (e) => {
+      const item = e.target.closest("li");
+      if (!item) return;
 
-    const id = item.getAttribute('id')
+      const id = item.getAttribute("id");
 
-    if(e.target.classList.contains('deleteBlog')) {
-      const ok = confirm("Delete blog?")
-      if(!ok) return
-    }
-    const res = await fetch(`/api/blog/${id}`, {
-      method: "DELETE"
-    })
+      if (e.target.classList.contains("deleteBlog")) {
+        const ok = confirm("Delete blog?");
+        if (!ok) return;
+      }
+      const res = await fetch(`/api/blog/${id}`, {
+        method: "DELETE",
+      });
 
-    if(res.ok) {
-      showMessage('Deleted', "success")
-      setTimeout(() => {
-        location.reload()
-      }, 300)
-    }
+      if (res.ok) {
+        showMessage("Deleted", "success");
+        setTimeout(() => {
+          location.reload();
+        }, 300);
+      }
 
-    if(e.target.classList.contains('editBlog')) {
-      window.location.href = `/write-blog/${id}`
-    }
-  })
-]}
+      if (e.target.classList.contains("editBlog")) {
+        window.location.href = `/write-blog/${id}`;
+      }
+    }),
+  ];
+}
 
 // --- change psw ---
 
 // --- delete user ---
+if (deleteBtn) {
+  deleteBtn.addEventListener("click", async () => {
+    const confirmation = confirm("Delete profile?");
+    if (!confirmation) return;
+
+    try {
+      const res = await fetch("/api/user/me", {
+        method: "DELETE",
+        credentials: "same-origin",
+      });
+
+      if (res.ok) {
+        showMessage("Profile deleted successfully!", "success");
+        setTimeout(() => {
+          window.location.href = "/register";
+        }, 300);
+      } else showMessage("Failed to delete profile!", "error");
+    } catch (error) {
+      console.log(error);
+    }
+  });
+}
 
 // --- eye for psw ---
