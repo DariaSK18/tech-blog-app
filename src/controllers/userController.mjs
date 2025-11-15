@@ -35,7 +35,8 @@ export const getOneUser = catchAsync(async (req, res, next) => {
 // --- update profile ---
 export const updateUser = catchAsync(async (req, res, next) => {
   const {
-    params: { id },
+    // params: { id },
+    user: {id},
     body: { username, password, currentPsw },
   } = req;
 
