@@ -11,5 +11,6 @@ router.get('/profile', isAuth, isUser, pageController.profilePage)
 router.get('/blogs', isUser, pageController.blogsPage)
 router.get('/change-psw', pageController.changePswPage)
 router.get('/write-blog', pageController.writeBlogPage)
+router.get('/write-blog/:id', pageController.writeBlogPage)
 
 export default router

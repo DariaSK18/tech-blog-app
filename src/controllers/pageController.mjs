@@ -20,7 +20,24 @@ export const blogsPage = async (req, res) => {
 export const changePswPage = (req, res) => {
   res.render("change-psw", { title: "Edit" });
 };
-export const writeBlogPage = (req, res) => {
-  const {params: {id}} = req
-  res.render("write-blog", { title: "Write blog", id });
+// export const writeBlogPage = (req, res) => {
+//   const {params: {id}} = req
+//   res.render("write-blog", { title: "Write blog", id });
+// };
+
+export const writeBlogPage = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+
+  let blog = null;
+  if (id) blog = await Blog.findById(id);
+  // console.log(id);
+  
+
+  res.render("write-blog", {
+    title: id ? "Edit blog" : "Write blog",
+    id,
+    blog,
+  });
 };

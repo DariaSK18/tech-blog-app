@@ -5,11 +5,21 @@
     <div class="main">
       <div class="main__container">
         <div class="main__write-blog">
-          <h2>Write a Blog</h2>
-          <form id="blogForm" data-id="<%= id || '' %>" action="/api/blog" method="POST">
+          <h2><%= blog ? 'Edit Blog' : 'Write Blog' %></h2>
+          <form
+            id="blogForm"
+            data-id="<%= id || '' %>"
+            action="/api/blog"
+            method="POST"
+          >
             <label>
               Title:
-              <input type="text" name="title" placeholder="Title"  />
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                value="<%= blog ? blog.title: '' %>"
+              />
             </label>
             <label>
               Content:
@@ -17,13 +27,18 @@
                 type="text"
                 name="content"
                 placeholder="Content"
-              ></textarea>
+              ><%= blog ? blog.content: '' %></textarea>
             </label>
             <label>
               Tags:
-              <input type="text" name="tags" placeholder="Tags"  />
+              <input
+                type="text"
+                name="tags"
+                placeholder="Tags"
+                value="<%= blog ? blog.tags: '' %>"
+              />
             </label>
-            <button type="submit" class="btn" >Save</button>
+            <button type="submit" class="btn">Save</button>
           </form>
         </div>
       </div>
