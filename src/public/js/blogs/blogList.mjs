@@ -1,6 +1,7 @@
 import { showMessage } from "../utils/showMessage.mjs";
 const blogsList = document.querySelector(".blogs-list");
-const showAllBtn = document.querySelector('.main__show-all')
+const showAllBtn = document.querySelector(".main__show-all");
+const likeBtns = document.querySelectorAll(".like-btn");
 
 // --- delete ---
 if (blogsList) {
@@ -34,8 +35,28 @@ if (blogsList) {
 }
 
 // --- show all blogs btn ---
-if(showAllBtn) {
-  showAllBtn.addEventListener('click', ()=>{
-    window.location.href = '/blogs'
+if (showAllBtn) {
+  showAllBtn.addEventListener("click", () => {
+    window.location.href = "/blogs";
+  });
+}
+
+// --- toggle like btn ---
+if (likeBtns) {
+  likeBtns.forEach(btn => {
+    btn.addEventListener("click", async () => {
+    const blogId = btn.dataset.blogId;
+
+    const res = await fetch(`/api/blog/${blogId}/like`, {
+      method: "PATCH",
+      credentials: 'same-origin'
+    });
+
+    const data = await res.json();
+
+    btn.querySelector(".likes-count").innerText = data.likes;
+    btn.classList.toggle("liked", data.liked);
+  });
   })
+  
 }
