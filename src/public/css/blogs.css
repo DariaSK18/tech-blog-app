@@ -12,6 +12,12 @@
     }
 
     .main__cards {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        .main__show-all{
+            cursor: pointer;
+        }
     }
 
     .main__content {

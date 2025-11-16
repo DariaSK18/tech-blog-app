@@ -1,5 +1,6 @@
 import { showMessage } from "../utils/showMessage.mjs";
 const blogsList = document.querySelector(".blogs-list");
+const showAllBtn = document.querySelector('.main__show-all')
 
 // --- delete ---
 if (blogsList) {
@@ -30,4 +31,11 @@ if (blogsList) {
       window.location.href = `/write-blog/${id}`;
     }
   });
+}
+
+// --- show all blogs btn ---
+if(showAllBtn) {
+  showAllBtn.addEventListener('click', ()=>{
+    window.location.href = '/blogs'
+  })
 }
