@@ -43,20 +43,32 @@ if (showAllBtn) {
 
 // --- toggle like btn ---
 if (likeBtns) {
-  likeBtns.forEach(btn => {
+  likeBtns.forEach((btn) => {
     btn.addEventListener("click", async () => {
-    const blogId = btn.dataset.blogId;
+      const blogId = btn.dataset.blogId;
 
-    const res = await fetch(`/api/blog/${blogId}/like`, {
-      method: "PATCH",
-      credentials: 'same-origin'
+      try {
+        const res = await fetch(`/api/blog/${blogId}/like`, {
+          method: "PATCH",
+          credentials: "same-origin",
+        });
+        if (!res.ok) {
+          console.log(res.status);
+          
+          if (res.status === 401 || res.status === 500) {
+            showMessage("You must be logged in to like a post", "error");
+            return;
+          }
+        }
+        const data = await res.json();
+        if(data.likes !== undefined) {
+          btn.querySelector(".likes-count").innerText = data.likes;
+        btn.classList.toggle("liked", data.liked);
+        }
+        
+      } catch (error) {
+        console.log(error);
+      }
     });
-
-    const data = await res.json();
-
-    btn.querySelector(".likes-count").innerText = data.likes;
-    btn.classList.toggle("liked", data.liked);
   });
-  })
-  
 }

@@ -108,11 +108,11 @@ textarea::placeholder {
     top: 0;
 }
 .success {
-    background: #2e2e2eed;
+    background: #2b914dd4;
     /* color: whitesmoke; */
 }
 .error {
-    background: #ed3d3d;
+    background: #fd5b5bcc;
     /* color: whitesmoke; */
 }
 .hidden {
