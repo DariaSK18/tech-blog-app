@@ -1,4 +1,5 @@
 const passwordFields = document.querySelectorAll('input[type="password"]');
+const inputWrapper = document.querySelector('.search-box')
 
 // --- eye for psw ---
 
@@ -21,4 +22,18 @@ if (passwordFields) {
       }
     });
   });
+}
+
+// --- hide icon ---
+if(inputWrapper){
+  const input = document.querySelector('input')
+  const icon = document.querySelector('.search-icon')
+
+  const toggleIcon = () => {
+    if(input.value.trim() === '') icon.style.opacity = '1'
+    else icon.style.opacity = '0'
+  }
+
+  toggleIcon()
+  input.addEventListener('input', toggleIcon)
 }

@@ -51,7 +51,7 @@
         padding: 1rem;
     }
 }
-.search-form{
+.search-box{
     position: relative;
     min-width: 15rem;
     input::placeholder{
@@ -60,5 +60,7 @@
 }
 .search-icon{
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0.5rem;
 }
