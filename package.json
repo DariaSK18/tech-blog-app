@@ -19,6 +19,7 @@
   "homepage": "https://github.com/DariaSK18/tech-blog-app#readme",
   "description": "",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "bcrypt": "^6.0.0",
     "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.7",

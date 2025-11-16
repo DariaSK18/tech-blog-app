@@ -28,6 +28,8 @@ app.use(express.static("src/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use('/fa', express.static('node_modules/@fortawesome/fontawesome-free'));
+
 
 app.use(
   session({
