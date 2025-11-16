@@ -118,3 +118,13 @@ textarea::placeholder {
 .hidden {
     display: none;
 }
+label{
+    position: relative;
+}
+.toggle-password{
+    color: whitesmoke;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+}
