@@ -43,7 +43,7 @@ export const updateBlog = catchAsync(async (req, res, next) => {
   if (content) blog.content = content;
   if (tags) blog.tags = tags;
 
-  const updated = await blog.save()
+  const updated = await blog.save();
   res.status(200).json(updated);
 });
 
@@ -57,7 +57,6 @@ export const deleteBlog = catchAsync(async (req, res, next) => {
   res.status(204).send();
 });
 
-
 // export const blogsPage = async (req, res) => {
 //   const searchQuery = req.query.search || ''
 
@@ -65,3 +64,25 @@ export const deleteBlog = catchAsync(async (req, res, next) => {
 //     title: {$regex: searchQuery, $options: 'i'}
 //   }).populate('author')
 // }
+
+export const toggleLike = catchAsync(async (req, res, next) => {
+  const {
+    params: { id },
+  } = req;
+  const userId = req.user._id;
+
+  const blog = await Blog.findById(id);
+  if (!blog) return next(new AppError("Blog not found", 404));
+
+  const index = blog.likes.indexOf(userId);
+
+  if (index === -1) blog.likes.push(userId);
+  else blog.likes.splice(index, 1);
+
+  await blog.save();
+
+  res.status(200).json({
+    likes: blog.likes.length,
+    liked: index === -1,
+  });
+});

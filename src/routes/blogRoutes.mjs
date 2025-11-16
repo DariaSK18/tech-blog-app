@@ -18,4 +18,8 @@ router
   .patch(isAuth, isAuthor, checkSchema(blogPatch), validate, blogController.updateBlog)
   .delete(isAuth, isAuthor, blogController.deleteBlog);
 
+router
+  .route("/:id/like")
+  .patch(isAuth, blogController.toggleLike)
+
 export default router;

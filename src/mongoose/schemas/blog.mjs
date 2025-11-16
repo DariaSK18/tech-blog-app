@@ -19,7 +19,11 @@ const BlogSchema = new mongoose.Schema(
     tags: {
         type: [mongoose.Schema.Types.String],
         default: []
-    }
+    },
+    likes: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }]
   },
   {
     timestamps: true,
