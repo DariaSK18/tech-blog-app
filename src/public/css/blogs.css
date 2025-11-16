@@ -51,9 +51,6 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        .main__date{
-            align-self: end;
-        }
     }
     h4{
         font-size: 2rem;
@@ -74,4 +71,16 @@
 }
 .deletBlog {
     color: red;
+}
+.main__likes{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.like-btn {
+    color: whitesmoke;
+}
+.liked {
+    color: #007bff;
 }
