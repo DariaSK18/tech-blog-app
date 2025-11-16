@@ -42,7 +42,8 @@
         }
         .main__tags{
             display: flex;
-            gap: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
         .main__date{
             align-self: end;
