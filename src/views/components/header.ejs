@@ -17,13 +17,14 @@
       <!-- ByteSyntax -->
     </section>
     <section class="header__search">
-      <form id="searchForm">
-        <input type="text" name="query" placeholder="Search" />
+      <form id="searchForm" class="search-form">
+        <input  type="text" name="query" placeholder="Search" />
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
         <!-- <button type="submit">Search</button> -->
       </form>
     </section>
     <section class="header__write">
-      <a href="../write-blog">Write</a>
+      <a href="../write-blog" class="header__write-content"><i class="fa-regular fa-pen-to-square write-icon"></i><span>Write</span></a>
     </section>
     <section class="header__profile profile">
       <% if (user) { %>

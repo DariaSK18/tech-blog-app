@@ -17,16 +17,21 @@
         align-items: center;
         justify-content: center;
         /* padding: 1rem; */
-        input{
+        input {
             margin-top: 0;
         }
     }
 
-    .header__write {
+    .header__write-content {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    .write-icon {
+        font-size: 1.5rem;
     }
 
     .header__profile {
-       
     }
 }
 .nav {
@@ -45,4 +50,15 @@
         text-align: center;
         padding: 1rem;
     }
+}
+.search-form{
+    position: relative;
+    min-width: 15rem;
+    input::placeholder{
+        padding-left: 1.5rem;
+    }
+}
+.search-icon{
+    position: absolute;
+    left: 0.5rem;
 }
