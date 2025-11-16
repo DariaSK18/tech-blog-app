@@ -29,6 +29,7 @@
                     class="like-btn <%= blog.likes.includes(user?._id) ? 'liked' : '' %>"
                   >
                     <i class="fa-regular fa-thumbs-up"></i>
+                    <!-- <i class="fa-solid fa-heart fa-flip"></i> -->
                     <span class="likes-count"><%= blog.likes.length %></span>
                   </button>
                   <p class="main__date"><%= blog.formattedCreatedDate %></p>
