@@ -2,7 +2,7 @@ import { Blog } from "../mongoose/schemas/blog.mjs";
 import dayjs from "dayjs";
 
 export const homePage = async(req, res) => {
-  const blogs = await Blog.find().populate("author");
+  const blogs = await Blog.find().populate("author").sort({ createdAt: -1 })
   res.render("index", { title: "Home", blogs });
 };
 export const loginPage = (req, res) => {
@@ -17,12 +17,9 @@ export const profilePage = (req, res) => {
 
 export const blogsPage = async (req, res) => {
   const { search, tag } = req.query;
-
   const filter = {};
-
   if (search) filter.title = { $regex: `\\b${search}`, $options: "i" };
   if (tag) filter.tags = tag;
-
   const blogs = await Blog.find(filter).populate("author");
 
   const formattedBlogs = blogs.map((blog) => ({
