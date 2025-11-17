@@ -6,8 +6,6 @@
         flex-direction: column;
         gap: 2rem;
     }
-    .main__show-all {
-    }
     .main__hero {
         display: flex;
         gap: 3rem;

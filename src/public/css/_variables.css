@@ -1,5 +1,5 @@
 :root{
-    --primary: black;
+    --primary: rgb(33, 33, 33);
     --text-color: whitesmoke;
     --accent-color: rgb(95, 250, 193);
 }

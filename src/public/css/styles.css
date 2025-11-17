@@ -17,7 +17,7 @@ html,
 body {
     font-family: "Nunito", "Roboto";
     font-size: 1rem;
-    background: #2b2b2b;
+    background: var(--primary);
     /* background: #2a7b9b; */
     /* background: linear-gradient(35deg, rgba(42, 123, 155, 1) 18%, rgba(35, 135, 77, 1) 56%, rgba(6, 120, 4, 1) 100%); */
     /* background: linear-gradient(35deg, rgb(31, 106, 135) 18%, rgb(27, 126, 68) 56%, rgb(4, 87, 2) 100%);  */
@@ -25,8 +25,8 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    color: whitesmoke;
-    text-shadow: 0 0 8px rgba(46, 46, 46, 0.7);
+    color: var(--text-color);
+    /* text-shadow: 0 0 8px rgba(46, 46, 46, 0.7); */
 }
 
 [class*="__container"] {
@@ -43,7 +43,7 @@ body {
 }
 .wrapper .main {
     flex-grow: 1;
-    padding-top: 3rem;
+    /* padding-top: 3rem; */
 }
 .main {
     flex-grow: 1;
@@ -52,7 +52,7 @@ body {
 }
 .btn {
     text-shadow: 0 0 8px rgba(46, 46, 46, 0.7);
-    color: whitesmoke;
+    color: var(--text-color);
     border: 0.1rem solid hsl(0, 0%, 100%, 0.3);
     border-radius: 0.5rem;
     padding: 0.5rem 2rem;
@@ -76,7 +76,7 @@ textarea {
     border-radius: 0.5rem;
     background: hsl(0, 0%, 100%, 0.1);
     font-weight: 500;
-    color: whitesmoke;
+    color: var(--text-color);
 }
 form {
     display: flex;
@@ -87,7 +87,7 @@ form {
 }
 input::placeholder,
 textarea::placeholder {
-    color: whitesmoke;
+    color: var(--text-color);
 }
 
 .message {
@@ -124,9 +124,12 @@ label{
     position: relative;
 }
 .toggle-password{
-    color: whitesmoke;
+    color: var(--text-color);
     position: absolute;
     bottom: 0;
     right: 0;
     padding: 0.5rem 1rem;
 }
+ .main__show-all {
+    color: var(--accent-color);
+    }

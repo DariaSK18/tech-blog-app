@@ -33,7 +33,7 @@
     /* align-content: center;
     justify-items: center; */
     li{
-        border: 0.1rem solid whitesmoke;
+        border: 0.1rem solid var(--accent-color);
         border-radius: 1rem;
         padding: 1rem;
         width: 100%;
@@ -55,23 +55,23 @@
     h4{
         font-size: 2rem;
         text-align: center;
-        border-bottom: 0.1rem solid whitesmoke;
+        border-bottom: 0.1rem solid var(--accent-color);
         padding: 0.5rem;
     }
 }
 .editBlog {
 }
 .card-btn {
-    color: whitesmoke;
+    color: var(--text-color);
     border: 0.1rem solid hsl(0, 0%, 100%, 0.3);
     border-radius: 0.5rem;
     padding: 0.5rem 2rem;
     background: hsl(0, 0%, 100%, 0.1);
     width: 7rem;
 }
-.deletBlog {
+/* .deletBlog {
     color: red;
-}
+} */
 .main__likes{
     display: flex;
     gap: 1rem;
@@ -79,8 +79,8 @@
     align-items: center;
 }
 .like-btn {
-    color: whitesmoke;
+    color: var(--text-color);
 }
 .liked {
-    color: #007bff;
+    color: var(--accent-color);
 }
