@@ -1,0 +1,37 @@
+.wrapper {
+}
+.main {
+    .main__container {
+    }
+    .main__show-all {
+    }
+    .main__hero {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+    .main__post {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+justify-content: space-between;
+align-items: center;
+    }
+    .main__picture {
+    }
+    .main__title {
+    }
+    .main__featured {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+
+    .main__subtitle {
+    }
+}

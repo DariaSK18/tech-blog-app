@@ -14,13 +14,16 @@
               Title
             </h1>
           </div>
-          <div class="main__featired">
+          <div class="main__featured">
             <h2 class="main__subtitle">Featured</h2>
-            <% blogs.slice(0, 4).forEach(blog => { %>
-              <li id="<%= blog._id %>">
-                <h4><%= blog.title %></h4>
-              </li>
-              <% }) %>
+           <ul>
+              <% blogs.slice(0, 4).forEach(blog => { %>
+                <li id="<%= blog._id %>">
+                  <h4><%= blog.title %></h4>
+                  <p class="main__date"><%= blog.formattedCreatedDate %></p>
+                </li>
+                <% }) %>
+           </ul>
           </div>
         </div>
       </div>

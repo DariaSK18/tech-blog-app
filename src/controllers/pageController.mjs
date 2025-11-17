@@ -1,9 +1,10 @@
 import { Blog } from "../mongoose/schemas/blog.mjs";
-import dayjs from "dayjs";
+import formatDate from "../helpers/formatDate.mjs";
 
 export const homePage = async(req, res) => {
   const blogs = await Blog.find().populate("author").sort({ createdAt: -1 })
-  res.render("index", { title: "Home", blogs });
+  const formattedBlogs = formatDate(blogs)
+  res.render("index", { title: "Home", blogs: formattedBlogs });
 };
 export const loginPage = (req, res) => {
   res.render("login", { title: "Login" });
@@ -22,11 +23,7 @@ export const blogsPage = async (req, res) => {
   if (tag) filter.tags = tag;
   const blogs = await Blog.find(filter).populate("author");
 
-  const formattedBlogs = blogs.map((blog) => ({
-    ...blog._doc,
-    formattedCreatedDate: dayjs(blog.createdAt).format("DD MMM YYYY"),
-    formattedUpdatedDate: dayjs(blog.updatedAt).format("DD MMM YYYY"),
-  }));
+const formattedBlogs = formatDate(blogs)
 
   res.render("blogs", {
     title: "Blogs",
