@@ -2,6 +2,28 @@
 <body>
   <div class="wrapper">
     <%- include('components/header') -%>
-    <main class="main">Home page</main>
+    <main class="main">
+      <div class="main__container">
+        <p class="main__show-all">Show all blogs</p>
+        <div class="main__hero">
+          <div class="main__post">
+            <div class="main__picture">
+              <img src="#" alt="main-pic">
+            </div>
+            <h1 class="main__title">
+              Title
+            </h1>
+          </div>
+          <div class="main__featired">
+            <h2 class="main__subtitle">Featured</h2>
+            <% blogs.forEach(blog => { %>
+              <li id="<%= blog._id %>">
+                <h4><%= blog.title %></h4>
+              </li>
+              <% }) %>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 </body>

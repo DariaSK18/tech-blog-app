@@ -1,8 +1,9 @@
 import { Blog } from "../mongoose/schemas/blog.mjs";
 import dayjs from "dayjs";
 
-export const homePage = (req, res) => {
-  res.render("index", { title: "Home" });
+export const homePage = async(req, res) => {
+  const blogs = await Blog.find().populate("author");
+  res.render("index", { title: "Home", blogs });
 };
 export const loginPage = (req, res) => {
   res.render("login", { title: "Login" });
