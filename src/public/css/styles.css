@@ -132,4 +132,10 @@ label{
 }
  .main__show-all {
     color: var(--accent-color);
+    border: 0.1rem solid var(--accent-color);
+    max-width: 10rem;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
     }
