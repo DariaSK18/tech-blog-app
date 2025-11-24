@@ -21,7 +21,7 @@ export const blogsPage = async (req, res) => {
   const filter = {};
   if (search) filter.title = { $regex: `\\b${search}`, $options: "i" };
   if (tag) filter.tags = tag;
-  const blogs = await Blog.find(filter).populate("author");
+  const blogs = await Blog.find(filter).populate("author").sort({ createdAt: -1 });
 
 const formattedBlogs = formatDate(blogs)
 
