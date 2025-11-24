@@ -57,7 +57,10 @@
               <% blogs.slice(0, 4).forEach(blog => { %>
               <li id="<%= blog._id %>">
                 <p class="main__date"><%= blog.formattedCreatedDate %></p>
-                <h4><%= blog.title %></h4>
+                <a
+                href="/blogs?search=<%= encodeURIComponent(blog.title)%>"
+                class="main__tags"
+              ><h4><%= blog.title %></h4></a>
               </li>
               <% }) %>
             </ul>
